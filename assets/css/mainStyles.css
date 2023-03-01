@@ -1,15 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
-
 body {
   overflow: hidden;
   margin: 0;
   padding: 0;
 }
+
 .main {
   font-family: Roboto;
   height: 100vh;
   width: 100vw;
-  background-image: url('https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg');
+  background-image: url("https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg");
   background-size: cover;
   overflow: hidden;
 }
@@ -29,14 +29,14 @@ h2 {
   color: white;
   z-index: 20;
 }
+
 listG {
   display: flex;
   justify-content: space-between;
 }
+
 .data {
   font-size: 30px !important;
-}
-.data__container {
 }
 
 .todo__add__form {
@@ -45,6 +45,7 @@ listG {
   align-items: center;
   justify-content: center;
 }
+
 .openModalButton {
   cursor: pointer;
   width: 45px;
@@ -52,17 +53,13 @@ listG {
   position: absolute;
   left: 20px;
   top: 20px;
-  img {
-    width: 100%;
-    object-fit: cover;
-  }
+}
+.openModalButton img {
+  width: 100%;
+  object-fit: cover;
 }
 
-.modal-dialog {
-  input {
-    &:focus {
-      border: 1px solid rgb(241, 221, 183);
-      box-shadow: 0 0 0.5px 4px #fad76b;
-    }
-  }
+.modal-dialog input:focus {
+  border: 1px solid rgb(241, 221, 183);
+  box-shadow: 0 0 0.5px 4px #fad76b;
 }

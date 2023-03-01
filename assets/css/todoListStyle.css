@@ -12,23 +12,26 @@
   border-radius: 50px;
   margin-left: 15px;
 }
+
 .deleteButton {
   max-height: 100%;
   border: none;
   max-width: 40px;
-  img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
+}
+.deleteButton img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .todo-enter {
   opacity: 0;
 }
+
 .todo-enter-active {
   animation: fade-in 500ms forwards;
 }
+
 .todo-exit-active {
   animation: fade-out 500ms forwards;
 }
@@ -43,7 +46,6 @@
     opacity: 0;
   }
 }
-
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -54,19 +56,16 @@
     transform: translateY(0);
   }
 }
-
-.complited {
-  &::before {
-    content: '';
-    position: absolute;
-    width: 60%;
-    height: 2px;
-    top: 50%;
-    left: 4%;
-    z-index: 20;
-    background-color: red;
-    animation: complite 300ms forwards;
-  }
+.complited::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  top: 50%;
+  left: 4%;
+  z-index: 20;
+  background-color: red;
+  animation: complite 300ms forwards;
 }
 
 @keyframes complite {
@@ -85,7 +84,6 @@
     width: 60%;
   }
 }
-
 .showTodo {
   cursor: pointer;
   font-family: Roboto;
@@ -100,37 +98,36 @@
   margin-left: 20px;
   padding-right: 50px;
   overflow: hidden;
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 150%;
-    background-color: white;
-    height: 2px;
-    width: 200px;
-    transition: transform 0.3s ease-in-out;
-  }
-  &:hover::after {
-    transform: translateX(-52%);
-  }
+}
+.showTodo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 150%;
+  background-color: white;
+  height: 2px;
+  width: 200px;
+  transition: transform 0.3s ease-in-out;
+}
+.showTodo:hover::after {
+  transform: translateX(-52%);
 }
 
-.todo__add__form {
-  input {
-    background-color: rgba(128, 128, 128, 0.303);
-    outline: none;
-    border: none;
-    color: white;
-    padding-left: 10px;
-    &::placeholder {
-      color: white;
-    }
-  }
-  button {
-    border-radius: 5px;
-    background-color: #ffc107;
-  }
+.todo__add__form input {
+  background-color: rgba(128, 128, 128, 0.303);
+  outline: none;
+  border: none;
+  color: white;
+  padding-left: 10px;
 }
+.todo__add__form input::placeholder {
+  color: white;
+}
+.todo__add__form button {
+  border-radius: 5px;
+  background-color: #ffc107;
+}
+
 .todoes {
   margin: 0 auto;
   margin-top: 50px;
@@ -155,7 +152,6 @@
     opacity: 0;
   }
 }
-
 @keyframes todo-fade-in {
   0% {
     opacity: 0;
