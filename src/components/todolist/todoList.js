@@ -9,7 +9,7 @@ import { CSSTransition } from 'react-transition-group';
 
 const TodoList = () => {
   const storage = localStorage.getItem('todoList')?.split(',');
-  const [todoList, setTodoList] = useState(storage.length > 0 && storage != '' ? storage : []);
+  const [todoList, setTodoList] = useState(storage?.length > 0 && storage != '' ? storage : []);
   const [visible, setVisible] = useState(false);
   const content = (
     <View setVisible={setVisible} visible={visible} todoList={todoList} setTodoList={setTodoList} />
