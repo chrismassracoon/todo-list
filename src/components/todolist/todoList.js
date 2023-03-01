@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import './todoListStyle.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CloseButton, ListGroup, ListGroupItem } from "react-bootstrap";
-import Collapse from 'react-bootstrap/Collapse';
 import trashbin from '../../img/trashbin.png'
 import complite from '../../img/complite.svg'
 import { TransitionGroup } from "react-transition-group";
