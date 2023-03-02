@@ -66,6 +66,12 @@ listG {
 .modal-dialog .modal-content {
   background: rgba(255, 255, 255, 0.618);
 }
+@media (max-width: 500px) {
+  .modal-dialog .modal-content {
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.718);
+  }
+}
 .modal-dialog input:focus {
   border: 1px solid rgb(241, 221, 183);
   box-shadow: 0 0 0.5px 4px #fad76b;

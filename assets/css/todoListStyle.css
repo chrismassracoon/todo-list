@@ -2,7 +2,7 @@
 .todos__container {
   width: 400px;
   height: 500px;
-  background-color: rgba(0, 0, 0, 0.724);
+  background-color: rgba(0, 0, 0, 0.824);
   position: absolute;
   left: 0;
   bottom: 50px;
@@ -12,6 +12,12 @@
   border-radius: 50px;
   margin-left: 15px;
   z-index: 200;
+}
+@media (max-width: 500px) {
+  .todos__container {
+    width: 90vw;
+    justify-self: center;
+  }
 }
 
 .deleteButton {

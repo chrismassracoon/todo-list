@@ -61,10 +61,13 @@ listG {
     transform: scale(1.2);
   }
 }
-
 .modal-dialog {
   .modal-content {
     background: rgba(255, 255, 255, 0.618);
+    @media (max-width: 500px) {
+      margin-top: 100px;
+      background: rgba(255, 255, 255, 0.718);
+    }
   }
   input {
     &:focus {
