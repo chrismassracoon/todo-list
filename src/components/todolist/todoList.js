@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './todoListStyle.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CloseButton, ListGroup, ListGroupItem } from 'react-bootstrap';

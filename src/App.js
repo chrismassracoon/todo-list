@@ -1,8 +1,9 @@
 import './mainStyles.scss';
-import Data from './components/Data';
-import TodoList from './components/todolist/TodoList';
-import AuthModal from './components/todolist/Modal';
-import SuccessfulRegistrationModal from './components/todolist/Succesfullmodal';
+import Data from './components/data';
+import TodoList from './components/todolist/todoList';
+import AuthModal from './components/todolist/modal';
+import SuccessfulRegistrationModal from './components/todolist/succesfullmodal'
+
 
 function App() {
   return (
