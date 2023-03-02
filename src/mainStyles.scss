@@ -52,17 +52,40 @@ listG {
   position: absolute;
   left: 20px;
   top: 20px;
+  transition: 0.8s;
   img {
     width: 100%;
     object-fit: cover;
   }
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .modal-dialog {
+  .modal-content {
+    background: rgba(255, 255, 255, 0.618);
+  }
   input {
     &:focus {
       border: 1px solid rgb(241, 221, 183);
       box-shadow: 0 0 0.5px 4px #fad76b;
     }
+  }
+}
+.welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  input {
+    box-sizing: border-box;
+    max-width: 150px;
+    font-size: 30px;
+    color: white;
+    background: none;
+    margin-bottom: 5px;
+    border: 0;
+    outline: 0;
   }
 }

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import 'firebase/firestore';
+import { getFirestore, collection, doc, setDoc } from 'firebase/firestore';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
@@ -15,13 +15,20 @@ function AuthModal() {
     measurementId: 'G-TPWGLDQEZB',
   };
   const app = initializeApp(firebaseConfig);
-
+  const db = getFirestore(app);
   const auth = getAuth(app);
+
+  const todolistRef = collection(db, 'todolist');
 
   const [show, setShow] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  setDoc(doc(todolistRef, 'user123'), {
+    name: 'San Francisco',
+    regions: ['west_coast', 'da'],
+  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import '../mainStyles.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { setname } from '../redux/slice';
 
 const Data = () => {
+  // Отримання ім'я з редаксу
+  const name = useSelector((state) => state.todolist.name);
+  const dispatch = useDispatch();
+  const borderName = name.length < 1 ? { borderBottom: '1px solid white' } : {};
+
+  // Отримання дати вперше
   let engDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const [date, setDate] = useState({
     hour: new Date().getHours(),
@@ -11,6 +19,8 @@ const Data = () => {
     number: new Date().getDate(),
     month: new Date().toLocaleDateString('en-EN', { month: 'long' }),
   });
+
+  // Оновлення часу щосекундно
   useEffect(() => {
     const dateInterval = setInterval(() => {
       setDate({
@@ -27,7 +37,13 @@ const Data = () => {
   return (
     <div className="container">
       <div className="data__container">
-        <h2 className="data">Welcome back, name</h2>
+        <div className="welcome">
+          <h2 className="data">Welcome back,</h2>
+          <input
+            style={borderName}
+            onChange={(e) => dispatch(setname(e.target.value))}
+            value={name}></input>
+        </div>
         <h2 className="time">
           {('' + date.hour).length < 2 ? `0${date.hour}` : date.hour}:
           {('' + date.minutes).length < 2 ? `0${date.minutes}` : date.minutes}:
