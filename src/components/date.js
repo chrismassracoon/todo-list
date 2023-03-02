@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../mainStyles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setname } from '../redux/slice';
+import Time from './Time';
 
 const Data = () => {
   // Отримання ім'я з редаксу
@@ -44,11 +45,7 @@ const Data = () => {
             onChange={(e) => dispatch(setname(e.target.value))}
             value={name}></input>
         </div>
-        <h2 className="time">
-          {('' + date.hour).length < 2 ? `0${date.hour}` : date.hour}:
-          {('' + date.minutes).length < 2 ? `0${date.minutes}` : date.minutes}:
-          {('' + date.seconds).length < 2 ? `0${date.seconds}` : date.seconds}
-        </h2>
+        <Time hour={date.hour} minutes={date.minutes} seconds={date.seconds} />
         <h2 className="data">
           {' '}
           {engDays[date.day]}, {date.number} {date.month}

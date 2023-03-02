@@ -8,9 +8,13 @@ import { TransitionGroup } from 'react-transition-group';
 import { CSSTransition } from 'react-transition-group';
 
 const TodoList = () => {
-  const storage = localStorage.getItem('todoList')?.split(',');
-  const [todoList, setTodoList] = useState(storage?.length > 0 && storage != '' ? storage : []);
+  const [todoList, setTodoList] = useState([]);
   const [visible, setVisible] = useState(false);
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.todos__container') && !e.target.closest('.showTodo')) {
+      setVisible(false);
+    }
+  });
   const content = (
     <View setVisible={setVisible} visible={visible} todoList={todoList} setTodoList={setTodoList} />
   );
@@ -29,38 +33,52 @@ const View = (props) => {
     e.preventDefault();
     if (temp.length < 2) {
     }
-    props.setTodoList([...props.todoList, temp]);
+    props.setTodoList([...props.todoList, { text: temp, complete: false }]);
     e.target.previousElementSibling.value = '';
   };
 
   const makeComplie = (e) => {
-    e.target.closest('.todo__item').classList.toggle('complited');
+    const id = e.target.parentNode.id;
+    console.log(e.target.parentNode);
+    console.log(id);
+    const newArr = props.todoList.map((item, i) => {
+      if (i == id) {
+        return { text: item.text, complete: !item.complete };
+      } else {
+        return item;
+      }
+    });
+    props.setTodoList(newArr);
   };
   const spectInput = (e) => {
     e.preventDefault();
     temp = e.target.value;
   };
-  useEffect(() => localStorage.setItem('todoList', [...props.todoList]), [props.todoList]);
 
   const deleteItem = (e) => {
     const id = e.target.parentNode.id;
     const newTodo = props.todoList.filter((item, i) => i != id);
     props.setTodoList(newTodo);
+    console.log(e.target.parentNode);
   };
   const items = props.todoList.map((item, i) => {
     return (
-      <CSSTransition classNames={'todo'} key={item} timeout={300}>
+      <CSSTransition classNames={'todo'} key={item.text} timeout={300}>
         <ListGroupItem
-          className="todo__item"
+          className={item.complete ? 'todo__item complited' : `todo__item`}
           style={{
             position: 'relavtive',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
           }}>
-          {i + 1}. {item}{' '}
+          {i + 1}. {item.text}{' '}
           <div>
-            <button onClick={makeComplie} style={{ background: 'none' }} className="deleteButton">
+            <button
+              id={i}
+              onClick={makeComplie}
+              style={{ background: 'none' }}
+              className="deleteButton">
               <img src={complite} />
             </button>
             <button

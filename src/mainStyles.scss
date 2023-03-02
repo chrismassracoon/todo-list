@@ -5,6 +5,14 @@ body {
   margin: 0;
   padding: 0;
 }
+body::-webkit-scrollbar-thumb {
+  background-color: blue; /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+  border: 3px solid orange; /* отступ вокруг бегунка */
+}
+body::-webkit-scrollbar-track {
+  background: orange; /* цвет зоны отслеживания */
+}
 .main {
   font-family: Roboto;
   height: 100vh;
@@ -23,15 +31,12 @@ body {
 }
 
 h2 {
+  white-space: nowrap;
   line-height: 25px;
   text-align: center;
   font-size: 90px !important;
   color: white;
   z-index: 20;
-}
-listG {
-  display: flex;
-  justify-content: space-between;
 }
 .data {
   font-size: 30px !important;
@@ -91,4 +96,9 @@ listG {
     border: 0;
     outline: 0;
   }
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between !important;
 }

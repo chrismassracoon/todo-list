@@ -3,6 +3,8 @@ import { getFirestore, collection, doc, setDoc } from 'firebase/firestore';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import '../../mainStyles.scss';
 
 function AuthModal() {
   const firebaseConfig = {
@@ -69,9 +71,8 @@ function AuthModal() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{isRegister ? 'Register' : 'Log In'}</Modal.Title>
+          <Modal.Title>{isRegister ? 'Sign Up' : 'Log In'}</Modal.Title>
         </Modal.Header>
-
         <Modal.Body>
           <Form>
             <Form.Group style={{ marginBottom: '20px' }} controlId="formBasicUsername">
@@ -95,15 +96,14 @@ function AuthModal() {
             </Form.Group>
           </Form>
         </Modal.Body>
-
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleSwitch}>
-            {isRegister ? 'Log In' : 'Register'}
-          </Button>
+            <Button variant="secondary" onClick={handleSwitch}>
+              {isRegister ? 'Switch to Login' : 'Switch to Sign Up'}
+            </Button>
 
-          <Button variant="warning" onClick={isRegister ? handleRegister : handleLogin}>
-            {isRegister ? 'Register' : 'Log In'}
-          </Button>
+            <Button variant="warning" onClick={isRegister ? handleRegister : handleLogin}>
+              {isRegister ? 'Sign Up' : 'Log In'}
+            </Button>
         </Modal.Footer>
       </Modal>
     </>

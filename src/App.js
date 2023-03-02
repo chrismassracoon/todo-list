@@ -1,13 +1,15 @@
 import './mainStyles.scss';
-import Data from './components/date';
-import TodoList from './components/todolist/todoList';
-import AuthModal from './components/todolist/modal';
+import Data from './components/Date';
+import TodoList from './components/todolist/TodoList';
+import AuthModal from './components/todolist/Modal';
+import SuccessfulRegistrationModal from './components/todolist/Succesfullmodal';
 
 function App() {
   return (
     <div className="main">
+      {/* <SuccessfulRegistrationModal></SuccessfulRegistrationModal> */}
       <Data></Data>
-		<AuthModal></AuthModal>
+      <AuthModal></AuthModal>
       <TodoList></TodoList>
     </div>
   );
