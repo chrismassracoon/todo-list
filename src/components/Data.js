@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import '../mainStyles.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setname } from '../redux/slice';
-import Time from './time';
+import Time from './Time';
 
 const Data = () => {
   // Отримання ім'я з редаксу

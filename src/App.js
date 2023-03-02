@@ -1,5 +1,5 @@
 import './mainStyles.scss';
-import Data from './components/data';
+import Data from './components/Data';
 import TodoList from './components/todolist/todoList';
 import AuthModal from './components/todolist/modal';
 import SuccessfulRegistrationModal from './components/todolist/succesfullmodal'
