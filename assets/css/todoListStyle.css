@@ -94,7 +94,7 @@
 .showTodo {
   cursor: pointer;
   font-family: Roboto;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   background: none;
@@ -146,9 +146,19 @@
 .todos__container-enter-active {
   animation: todo-fade-in 500ms forwards;
 }
+@media (max-width: 600px) {
+  .todos__container-enter-active {
+    animation: todo-fade-in-phone 500ms forwards;
+  }
+}
 
 .todos__container-exit-active {
   animation: todo-fade-out 500ms forwards;
+}
+@media (max-width: 600px) {
+  .todos__container-exit-active {
+    animation: todo-fade-out-phone 500ms forwards;
+  }
 }
 
 @keyframes todo-fade-out {
@@ -161,6 +171,16 @@
     opacity: 0;
   }
 }
+@keyframes todo-fade-out-phone {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+}
 @keyframes todo-fade-in {
   0% {
     opacity: 0;
@@ -168,6 +188,29 @@
   }
   100% {
     opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes todo-fade-in-phone {
+  0% {
+    opacity: 0;
+    transform: translateY(300px);
+  }
+  100% {
+    opacity: 1;
     transform: translateY(0);
+  }
+}
+svg {
+  display: none;
+}
+@media (max-width: 500px) {
+  svg {
+    position: absolute;
+    display: block;
+    fill: white;
+    width: 20px;
+    left: 50%;
+    bottom: 0;
   }
 }

@@ -11,6 +11,8 @@ const TodoList = () => {
   const [todoList, setTodoList] = useState([]);
   const [visible, setVisible] = useState(false);
 
+  const todosContainer = document.querySelector('.todos__container');
+
   function hideTodo(e) {
     if (!e.target.closest('.todos__container') && !e.target.closest('.showTodo')) {
       setVisible(false);
@@ -23,31 +25,42 @@ const TodoList = () => {
     };
   }, []);
 
-  let startY = null; // початкова координата Y
+  let startYHide;
+  let startY = null; // тимчасова координата
   const threshold = 50; // поріг для свайпу
+  // відстежуємо подію свайпу
+  document.addEventListener('touchstart', function (e) {
+    if (e.target.closest('.todos__container')) {
+      startYHide = e.touches[0].clientY;
+    }
+  });
+  document.addEventListener('touchmove', function (e) {
+    if (e.target.closest('.todos__container')) {
+      const distance = e.touches[0].clientY - startYHide;
+      if (distance > 50) {
+        setVisible(false);
+      }
+    }
+  });
 
-  // відстежуємо подію "touchstart"
-  document.addEventListener('touchstart', function (event) {
-    const touch = event.touches[0];
+  document.addEventListener('touchstart', function (e) {
+    const touch = e.touches[0];
     startY = touch.pageY;
   });
 
-  // відстежуємо події "touchmove" та "touchend"
-  document.addEventListener('touchmove', function (event) {
+  document.addEventListener('touchmove', function (e) {
     if (startY) {
-      const touch = event.touches[0];
+      const touch = e.touches[0];
       const diff = touch.pageY - startY;
 
-      // якщо рух пальця більше порогу, то це свайп догори
       if (diff < -threshold) {
-			console.log('321')
         setVisible(true);
         startY = null;
       }
     }
   });
 
-  document.addEventListener('touchend', function (event) {
+  document.addEventListener('touchend', function (e) {
     startY = null;
   });
 
