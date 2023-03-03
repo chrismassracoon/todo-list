@@ -170,7 +170,7 @@ const View = (props) => {
               placeholder="type todo"
               type="text"
             />
-            <button onClick={changeTodo}>+</button>
+            <button style={{width:'25px'}} onClick={changeTodo}>+</button>
           </form>
         </div>
       </div>

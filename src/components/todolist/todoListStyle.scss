@@ -2,6 +2,8 @@
 .todos__container {
   width: 400px;
   height: 500px;
+  font-style: 'Roboto';
+  font-size: 18px;
   background-color: rgba(0, 0, 0, 0.824);
   position: fixed;
   left: 0;
@@ -19,7 +21,7 @@
 .deleteButton {
   max-height: 100%;
   border: none;
-  max-width: 40px;
+  width: 40px;
   img {
     object-fit: cover;
     height: 100%;
@@ -205,7 +207,7 @@
 
 svg {
   display: none;
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     position: absolute;
     display: block;
     fill: white;
