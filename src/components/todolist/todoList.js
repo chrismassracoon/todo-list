@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './todoListStyle.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CloseButton, ListGroup, ListGroupItem } from 'react-bootstrap';
@@ -10,11 +10,47 @@ import { CSSTransition } from 'react-transition-group';
 const TodoList = () => {
   const [todoList, setTodoList] = useState([]);
   const [visible, setVisible] = useState(false);
-  document.addEventListener('click', (e) => {
+
+  function hideTodo(e) {
     if (!e.target.closest('.todos__container') && !e.target.closest('.showTodo')) {
       setVisible(false);
     }
+  }
+  useEffect(() => {
+    document.addEventListener('click', hideTodo);
+    return () => {
+      document.removeEventListener('click', hideTodo);
+    };
+  }, []);
+
+  let startY = null; // початкова координата Y
+  const threshold = 50; // поріг для свайпу
+
+  // відстежуємо подію "touchstart"
+  document.addEventListener('touchstart', function (event) {
+    const touch = event.touches[0];
+    startY = touch.pageY;
   });
+
+  // відстежуємо події "touchmove" та "touchend"
+  document.addEventListener('touchmove', function (event) {
+    if (startY) {
+      const touch = event.touches[0];
+      const diff = touch.pageY - startY;
+
+      // якщо рух пальця більше порогу, то це свайп догори
+      if (diff < -threshold) {
+			console.log('321')
+        setVisible(true);
+        startY = null;
+      }
+    }
+  });
+
+  document.addEventListener('touchend', function (event) {
+    startY = null;
+  });
+
   const content = (
     <View setVisible={setVisible} visible={visible} todoList={todoList} setTodoList={setTodoList} />
   );
@@ -27,8 +63,11 @@ const TodoList = () => {
     </div>
   );
 };
+
 const View = (props) => {
   let temp;
+
+  // Додавання нового пункту
   const changeTodo = (e) => {
     e.preventDefault();
     if (temp.length < 2) {
@@ -37,10 +76,9 @@ const View = (props) => {
     e.target.previousElementSibling.value = '';
   };
 
+  // Виконання пунктів листу
   const makeComplie = (e) => {
     const id = e.target.parentNode.id;
-    console.log(e.target.parentNode);
-    console.log(id);
     const newArr = props.todoList.map((item, i) => {
       if (i == id) {
         return { text: item.text, complete: !item.complete };
@@ -50,11 +88,14 @@ const View = (props) => {
     });
     props.setTodoList(newArr);
   };
+
+  // Слідкування зміни інпуту
   const spectInput = (e) => {
     e.preventDefault();
     temp = e.target.value;
   };
 
+  // Видалення завдання
   const deleteItem = (e) => {
     const id = e.target.parentNode.id;
     const newTodo = props.todoList.filter((item, i) => i != id);

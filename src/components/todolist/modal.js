@@ -7,6 +7,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import '../../mainStyles.scss';
 
 function AuthModal() {
+	// Налаштування і ініціалізація firebase та firestore
   const firebaseConfig = {
     apiKey: 'AIzaSyCrpy8eOiEsHT4pyh1-lvyEMI8K4-ABwDM',
     authDomain: 'todo-list-31a9e.firebaseapp.com',
@@ -22,6 +23,7 @@ function AuthModal() {
 
   const todolistRef = collection(db, 'todolist');
 
+  // Cтан реєстрації та модальних вікон
   const [show, setShow] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState('');
@@ -32,6 +34,7 @@ function AuthModal() {
     regions: ['west_coast', 'da'],
   });
 
+  // Функціїї зміни стану
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleSwitch = () => setIsRegister(!isRegister);
