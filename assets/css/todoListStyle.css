@@ -10,7 +10,7 @@
   justify-content: space-between;
   flex-direction: column;
   border-radius: 50px;
-  margin-left: 15px;
+  margin-left: 20px;
   z-index: 200;
 }
 @media (max-width: 500px) {
@@ -119,6 +119,11 @@
 .showTodo:hover::after {
   transform: translateX(-52%);
 }
+@media (max-width: 500px) {
+  .showTodo {
+    bottom: 5px;
+  }
+}
 
 .todo__add__form input {
   background-color: rgba(128, 128, 128, 0.303);
@@ -211,6 +216,7 @@ svg {
     fill: white;
     width: 20px;
     left: 50%;
+    transform: translateX(-50%);
     bottom: 0;
   }
 }
