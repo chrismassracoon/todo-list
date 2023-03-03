@@ -7,7 +7,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import '../../mainStyles.scss';
 
 function AuthModal() {
-	// Налаштування і ініціалізація firebase та firestore
+  // Налаштування і ініціалізація firebase та firestore
   const firebaseConfig = {
     apiKey: 'AIzaSyCrpy8eOiEsHT4pyh1-lvyEMI8K4-ABwDM',
     authDomain: 'todo-list-31a9e.firebaseapp.com',
@@ -100,13 +100,13 @@ function AuthModal() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-            <Button variant="secondary" onClick={handleSwitch}>
-              {isRegister ? 'Switch to Login' : 'Switch to Sign Up'}
-            </Button>
+          <Button variant="secondary" onClick={handleSwitch}>
+            {isRegister ? 'Switch to Login' : 'Switch to Sign Up'}
+          </Button>
 
-            <Button variant="warning" onClick={isRegister ? handleRegister : handleLogin}>
-              {isRegister ? 'Sign Up' : 'Log In'}
-            </Button>
+          <Button variant="warning" onClick={isRegister ? handleRegister : handleLogin}>
+            {isRegister ? 'Sign Up' : 'Log In'}
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

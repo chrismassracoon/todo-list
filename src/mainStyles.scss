@@ -49,7 +49,8 @@ body::-webkit-scrollbar-track {
   background: orange; /* цвет зоны отслеживания */
 }
 .main {
-  font-family: Roboto;
+  font-family: 'Roboto';
+  font-size: 20px;
   height: 100vh;
   width: 100vw;
   background-image: url('https://images.pexels.com/photos/2559941/pexels-photo-2559941.jpeg');

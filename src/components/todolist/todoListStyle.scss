@@ -21,7 +21,7 @@
 .deleteButton {
   max-height: 100%;
   border: none;
-  width: 40px;
+  width: 30px;
   img {
     object-fit: cover;
     height: 100%;
@@ -88,7 +88,7 @@
   }
   100% {
     opacity: 1;
-    width: 60%;
+    width: 65%;
   }
 }
 
@@ -140,6 +140,7 @@
     background-color: #ffc107;
   }
 }
+
 .todoes {
   margin: 0 auto;
   margin-top: 50px;
@@ -215,5 +216,18 @@ svg {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
+  }
+}
+
+.buttons-container {
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.add_form {
+  display: flex;
+  input {
+    flex-shrink: 1;
   }
 }

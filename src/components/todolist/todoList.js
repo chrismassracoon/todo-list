@@ -127,7 +127,7 @@ const View = (props) => {
             justifyContent: 'space-between',
           }}>
           {i + 1}. {item.text}{' '}
-          <div>
+          <div className='buttons-container'>
             <button
               id={i}
               onClick={makeComplie}
@@ -163,7 +163,7 @@ const View = (props) => {
           <TransitionGroup component={ListGroup}>{items}</TransitionGroup>
         </div>
         <div className="todo__add__form">
-          <form>
+          <form className='add_form'>
             <input
               value={temp}
               onChange={temp?.length < 2 ? null : spectInput}
