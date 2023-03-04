@@ -2,7 +2,6 @@ import './mainStyles.scss';
 import Data from './components/Data';
 import TodoList from './components/todolist/todoList';
 import AuthModal from './components/todolist/modal';
-import SuccessfulRegistrationModal from './components/todolist/Succesfullmodal';
 import { useEffect, useState } from 'react';
 import { getFirestore, collection, doc, setDoc, getDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux/es/exports';
@@ -10,7 +9,6 @@ import { getAuth } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { addUser, setTodoList, setName } from './redux/slice';
 import { useAuth } from './hooks/useAuth';
-import { Email } from '@mui/icons-material';
 
 function App() {
   const dispatch = useDispatch();
@@ -30,7 +28,7 @@ function App() {
   const { email, todoList, id, name } = useAuth();
   useEffect(() => {
     auth.onAuthStateChanged((user) =>
-      dispatch(addUser({ email: user.email, accessToken: user.accessToken, id: user.uid })),
+      dispatch(addUser({ email: user?.email, accessToken: user?.accessToken, id: user?.uid })),
     );
   }, []);
   useEffect(() => {
@@ -60,7 +58,6 @@ function App() {
   }, [todoList, name]);
   return (
     <div className="main">
-      {/* <SuccessfulRegistrationModal></SuccessfulRegistrationModal> */}
       <Data></Data>
       <AuthModal auth={auth} app={app}></AuthModal>
       <TodoList></TodoList>
