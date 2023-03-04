@@ -6,9 +6,13 @@ import trashbin from '../../img/trashbin.png';
 import complite from '../../img/complite.svg';
 import { TransitionGroup } from 'react-transition-group';
 import { CSSTransition } from 'react-transition-group';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from '../../hooks/useAuth';
+import { setTodoList } from '../../redux/slice';
 
 const TodoList = () => {
-  const [todoList, setTodoList] = useState([]);
+  const { todoList } = useAuth();
+  const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
   const todosContainer = document.querySelector('.todos__container');
@@ -64,9 +68,7 @@ const TodoList = () => {
     startY = null;
   });
 
-  const content = (
-    <View setVisible={setVisible} visible={visible} todoList={todoList} setTodoList={setTodoList} />
-  );
+  const content = <View setVisible={setVisible} visible={visible} />;
   return (
     <div>
       {content}
@@ -78,28 +80,29 @@ const TodoList = () => {
 };
 
 const View = (props) => {
+  const { todoList } = useAuth();
+  const dispatch = useDispatch();
   let temp;
-
   // Додавання нового пункту
   const changeTodo = (e) => {
     e.preventDefault();
     if (temp.length < 2) {
     }
-    props.setTodoList([...props.todoList, { text: temp, complete: false }]);
+    dispatch(setTodoList([...todoList, { text: temp, complete: false }]));
     e.target.previousElementSibling.value = '';
   };
 
   // Виконання пунктів листу
   const makeComplie = (e) => {
     const id = e.target.parentNode.id;
-    const newArr = props.todoList.map((item, i) => {
+    const newArr = todoList.map((item, i) => {
       if (i == id) {
         return { text: item.text, complete: !item.complete };
       } else {
         return item;
       }
     });
-    props.setTodoList(newArr);
+    dispatch(setTodoList(newArr));
   };
 
   // Слідкування зміни інпуту
@@ -111,11 +114,11 @@ const View = (props) => {
   // Видалення завдання
   const deleteItem = (e) => {
     const id = e.target.parentNode.id;
-    const newTodo = props.todoList.filter((item, i) => i != id);
-    props.setTodoList(newTodo);
+    const newTodo = todoList.filter((item, i) => i != id);
+    dispatch(setTodoList(newTodo));
     console.log(e.target.parentNode);
   };
-  const items = props.todoList.map((item, i) => {
+  const items = todoList.map((item, i) => {
     return (
       <CSSTransition classNames={'todo'} key={item.text} timeout={300}>
         <ListGroupItem
@@ -127,7 +130,7 @@ const View = (props) => {
             justifyContent: 'space-between',
           }}>
           {i + 1}. {item.text}{' '}
-          <div className='buttons-container'>
+          <div className="buttons-container">
             <button
               id={i}
               onClick={makeComplie}
@@ -163,14 +166,16 @@ const View = (props) => {
           <TransitionGroup component={ListGroup}>{items}</TransitionGroup>
         </div>
         <div className="todo__add__form">
-          <form className='add_form'>
+          <form className="add_form">
             <input
               value={temp}
               onChange={temp?.length < 2 ? null : spectInput}
               placeholder="type todo"
               type="text"
             />
-            <button style={{width:'25px'}} onClick={changeTodo}>+</button>
+            <button style={{ width: '25px' }} onClick={changeTodo}>
+              +
+            </button>
           </form>
         </div>
       </div>

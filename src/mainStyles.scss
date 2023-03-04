@@ -1,39 +1,81 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
-*{
-	padding: 0;
-	margin: 0;
-	border: 0;
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
-*,*:before,*:after{
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-:focus,:active{outline:none;}
-a:focus,a:active{outline:none;}
-
-nav,footer,header,aside{display: block;}
-
-html,body{
-	height: 100%;
-	width: 100% ;
-	font-size: 100%;
-	line-height: 1;
-	font-size: 14px;
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust:100%;
-	-webkit-text-size-adjust: 100%;
+:focus,
+:active {
+  outline: none;
 }
-input,button,textarea{font-family: inherit;}
+a:focus,
+a:active {
+  outline: none;
+}
 
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner{padding: 0;border: 0;}
-a,a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style:none ;}
-img{vertical-align: top;}
-h1,h2,h3,h4,h5,h6{font-size: inherit;font-weight: 400;}
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
 body {
   position: relative;
   overflow: hidden;
@@ -73,9 +115,15 @@ h2 {
   font-size: 90px !important;
   color: white;
   z-index: 20;
+  @media (max-width: 370px) {
+    font-size: 60px !important;
+  }
 }
 .data {
   font-size: 30px !important;
+  @media (max-width: 370px) {
+    font-size: 25px !important;
+  }
 }
 .data__container {
 }
@@ -88,18 +136,42 @@ h2 {
 }
 .openModalButton {
   cursor: pointer;
+  display: flex;
   width: 45px;
   height: 45px;
+  gap: 5px;
+  align-items: center;
   position: fixed;
   left: 20px;
   top: 20px;
-  transition: 0.8s;
   img {
     width: 100%;
     object-fit: cover;
+    transition: 0.8s;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
-  &:hover {
-    transform: scale(1.2);
+}
+.logout {
+  display: flex;
+  position: relative;
+  p {
+    font-weight: 500;
+    color: rgb(4, 4, 4);
+    margin: 0;
+  }
+  svg {
+    cursor: pointer;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 3px;
+    right: -30px;
+    transition: 0.6s;
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 .modal-dialog {
@@ -131,6 +203,10 @@ h2 {
     margin-bottom: 5px;
     border: 0;
     outline: 0;
+    @media (max-width: 350px) {
+      max-width: 120px;
+      font-size: 25px;
+    }
   }
 }
 
