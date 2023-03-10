@@ -7,13 +7,14 @@ import { useAuth } from '../../hooks/useAuth';
 import { useDispatch } from 'react-redux/es/exports';
 import { removeUser } from '../../redux/slice';
 import SuccessModal from './Succesfullmodal';
-function AuthModal({ auth, app }) {
+function AuthModal({ auth}) {
   const dispatch = useDispatch();
   const { email } = useAuth();
   // Налаштування і ініціалізація firebase та firestore
   //   const db = getFirestore(app);
   //   const todolistRef = collection(db, 'todolist');
   // Cтан реєстрації та модальних вікон
+  const [error, setError] = useState(false);
   const [show, setShow] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState('');
@@ -29,8 +30,18 @@ function AuthModal({ auth, app }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleSwitch = () => setIsRegister(!isRegister);
-  const handleUsernameChange = (e) => setUsername(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleUsernameChange = (e) => {
+    if (error) {
+      setError(false);
+    }
+    setUsername(e.target.value);
+  };
+  const handlePasswordChange = (e) => {
+    if (error) {
+      setError(false);
+    }
+    setPassword(e.target.value);
+  };
   const handleRegister = () => {
     createUserWithEmailAndPassword(auth, username, password)
       .then(() => {
@@ -45,6 +56,7 @@ function AuthModal({ auth, app }) {
       })
       .catch((error) => {
         console.log(error.message);
+        setError(true);
       });
   };
 
@@ -67,6 +79,7 @@ function AuthModal({ auth, app }) {
       })
       .catch((error) => {
         console.log(error.message);
+        setError(true);
       });
   };
 
@@ -98,6 +111,7 @@ function AuthModal({ auth, app }) {
             <Form.Group style={{ marginBottom: '20px' }} controlId="formBasicUsername">
               <Form.Label>Email</Form.Label>
               <Form.Control
+                className={error && 'error'}
                 type="text"
                 placeholder="Enter email"
                 value={username}
@@ -108,6 +122,7 @@ function AuthModal({ auth, app }) {
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
+                className={error && 'error'}
                 type="password"
                 placeholder="Password"
                 value={password}
@@ -115,6 +130,7 @@ function AuthModal({ auth, app }) {
               />
             </Form.Group>
           </Form>
+          {error && <p className="error_message">Wrong email or password, try again</p>}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleSwitch}>

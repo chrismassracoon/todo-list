@@ -72,7 +72,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+label {
   font-size: inherit;
   font-weight: 400;
 }
@@ -213,4 +214,20 @@ h2 {
 .modal-footer {
   display: flex;
   justify-content: space-between !important;
+}
+
+.error_message {
+  color: red;
+  font-size: 16px;
+  padding-top: 10px;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+
+.error {
+  border: 3px solid red !important;
+}
+
+label {
+  font-size: 16px;
 }

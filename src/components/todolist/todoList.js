@@ -33,19 +33,20 @@ const TodoList = () => {
   let startY = null; // тимчасова координата
   const threshold = 50; // поріг для свайпу
   // відстежуємо подію свайпу
-  document.addEventListener('touchstart', function (e) {
-    if (e.target.closest('.todos__container')) {
-      startYHide = e.touches[0].clientY;
-    }
-  });
-  document.addEventListener('touchmove', function (e) {
-    if (e.target.closest('.todos__container')) {
-      const distance = e.touches[0].clientY - startYHide;
-      if (distance > 50) {
-        setVisible(false);
-      }
-    }
-  });
+  // Закриття туду по свайпу вниз(неможливо скролити, поки вимкн)
+  //   document.addEventListener('touchstart', function (e) {
+  //     if (e.target.closest('.todos__container')) {
+  //       startYHide = e.touches[0].clientY;
+  //     }
+  //   });
+  //   document.addEventListener('touchmove', function (e) {
+  //     if (e.target.closest('.todos__container')) {
+  //       const distance = e.touches[0].clientY - startYHide;
+  //       if (distance > 50) {
+  //         setVisible(false);
+  //       }
+  //     }
+  //   });
 
   document.addEventListener('touchstart', function (e) {
     const touch = e.touches[0];
